@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Customer Basket</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="../css/main.css">
+        <style>
+            body {margin:0;}
+
+            .topnav {
+                overflow: hidden;
+                background-color: #f1f1f1;
+            }
+
+            .topnav a {
+                float: left;
+                display: block;
+                color: black;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+                border-bottom: 3px solid transparent;
+            }
+
+            .topnav a:hover {
+                border-bottom: 3px solid #689ebd;
+            }
+
+            .topnav a.active {
+                border-bottom: 3px solid #689ebd;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="container center_div">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">Customer Basket</h1>
+                    <p class="lead">Here you will be able to add items to a basket and delete customer and related items.</p>
+                </div>
+            </div>
+            <div class="topnav">
+                <a href="../index.html">Home</a>
+                <a href="user_edit.html" class="active">Add Customer</a>
+                <a href="edit_contact_details.html">Edit Contact Details</a>
+                <a href="maintain_inventory.html">Maintain Inventory</a>
+                <a href="history_invoices.html">Sales History</a>
+            </div>
+            <br>
+            <button id="refreshB" type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Refresh</button>
+            <a id="customers-history" class="btn btn-primary" href="history_invoices.html" role="button"><span class="glyphicon glyphicon-time"></span> Sales History</a>
+        </div>
+
+        <form class="container center_div" name="form2">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="customerinputId">Invoice Id</label>
+                        <input type="text" readonly class="form-control" id="customernameId" name="blank0">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="customerFirstName">First Name</label>
+                        <input type="text" class="form-control" id="customerfirstName" name="blank1">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="customerLastName">Last Name</label>
+                        <input type="text" class="form-control" id="customerlastName" name="blank2">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="customerinputstreet">Street</label>
+                        <input type="text" class="form-control" id="customerstreet" placeholder="eg. 2 Milky Lane" name="blank3">
+                    </div>                                  
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="customercity">City</label>
+                        <input type="text" class="form-control" id="customercity" placeholder="eg. Down Town" name="blank4">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="customerregion">Region</label>
+                        <input type="text" class="form-control" id="customerregion" placeholder="eg. Western Cape" name="blank5">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="customerpostal">Postal</label>
+                        <input type="text" class="form-control" id="customerpostal" placeholder="eg. 0000" name="blank6">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="customercellcontact">Cell Contact</label>
+                        <input type="text" class="form-control" id="customercellcontact" placeholder="eg. 0717777777">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="customerworkcontact">Work Contact</label>
+                        <input type="text" class="form-control" id="customerworkcontact" placeholder="eg. 0217777777">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="customerhomecontact">Home Contact</label>
+                        <input type="text" class="form-control" id="customerhomecontact" placeholder="eg. 0217777777">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="customeremail">Email</label>
+                        <input type="text" class="form-control" id="customeremail" placeholder="eg. johndoe@gmail.com">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="container center_div">
+                <div class="row">
+                    <div class="col-md-7">
+                        <button id="customer-purchase" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-usd"></span> Process Sale</button> 
+                        <button id="add-users" type="reset" class="btn btn-warning"><span class="glyphicon glyphicon-refresh"></span> Clear Form</button> 
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+        <div class="container center_div">
+            <div class="row">
+                <div class="col-md-7">
+                    <h2>Customer List <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top" title="use item list to add items to customer list"></span></h2>
+                    <ul id ="customerlist"></ul>
+                    <table id="tItems" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Product Quantity</th>
+                                <th>Product Price</th>
+                                <th>Total Price</th>
+                            </tr>
+                        </thead>
+                        <tbody id="item_table_data">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-4">
+                    <div class="col-md-8">
+                        <h2>Items List <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top" title="click to add item to customer list"></span></h2>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="sel1">Quantity:</label>
+                        <select class="form-control" id="Itquantity">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                        </select>
+                    </div>
+
+                    <table id="tInven" class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Product Price</th>
+                            </tr>
+                        </thead>
+                        <tbody id="item_table_data">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <script src="../js/libs/jquery-3.4.1.min.js"></script>
+        <script src="../js/main.js"></script>
+
+        <script>
+            var firstNameValue = localStorage.getItem("firstName");
+            document.getElementById("customerfirstName").value = firstNameValue;
+
+            var lastNameValue = localStorage.getItem("lastName");
+            document.getElementById("customerlastName").value = lastNameValue;
+
+            $(document).ready(function () {
+                $('#tInven tbody').on('click', 'tr', function () {
+                    var tableData = $(this).children("td").map(function () {
+                        return $(this).text();
+                    }).get();
+                    var td = tableData[0] + '*' + tableData[1];
+                    var qu = document.getElementById("Itquantity");
+
+                    var valueQu = qu.value;
+
+                    var totalItem = valueQu * tableData[1];
+                    var roundItemTotal = totalItem.toFixed(2);
+
+                    $("#tItems").append("<tr><td>" + tableData[0] + "</td><td>" + valueQu + "</td><td>" + tableData[1] + "</td><td>" + roundItemTotal + "</td></tr>");
+
+                    $(this).closest('tr').remove();
+                });
+
+            });
+
+
+            $(document).ready(function () {
+                $('#tItems tbody').on('click', 'tr', function () {
+                    var tableData = $(this).children("td").map(function () {
+                        return $(this).text();
+                    }).get();
+                    var td = tableData[0] + '*' + tableData[1];
+
+                    console.log(tableData[0])
+                    $("#tInven").append("<tr><td>" + tableData[0] + "</td><td>" + tableData[2] + "</td></tr>");
+
+                    $(this).closest('tr').remove();
+                });
+
+            });
+
+        </script>
+
+    </body>
+</html>

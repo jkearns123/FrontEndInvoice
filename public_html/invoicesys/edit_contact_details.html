@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Edit Contact Details</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="../css/main.css">
+        <style>
+            body {margin:0;}
+
+            .topnav {
+                overflow: hidden;
+                background-color: #f1f1f1;
+            }
+
+            .topnav a {
+                float: left;
+                display: block;
+                color: black;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+                border-bottom: 3px solid transparent;
+            }
+
+            .topnav a:hover {
+                border-bottom: 3px solid #689ebd;
+            }
+
+            .topnav a.active {
+                border-bottom: 3px solid #689ebd;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container center_div">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">Edit Contact Details</h1>
+                    <p class="lead">Edit Customers contact details, example address, contact numbers and email.</p>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" id="searcheditrecords" placeholder="Search...">
+                </div>
+            </div>
+            <div class="topnav">
+                <a href="../index.html">Home</a>
+                <a href="user_edit.html">Add Customer</a>
+                <a href="edit_contact_details.html" class="active">Edit Contact Details</a>
+                <a href="maintain_inventory.html">Maintain Inventory</a>
+                <a href="history_invoices.html">Sales History</a>
+            </div>
+            <br>
+            <br>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <button id="update_editDetails" type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Save Changes</button>
+                    <br>
+                    <br>
+                    <table id="contactEditTable" class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Sales Id</th>
+                            </tr>
+                        </thead>
+                        <tbody id="contactEdit_data">
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row col-md-6">
+                    <div class="well well-lg">
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="addressCheck1">
+                            <label class="form-check-label " for="exampleCheck1">Address</label>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-12">
+                                <label for="editaddressId">ID#</label>
+                                <input type="text" readonly class="form-control" id="editAddressId">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-6">
+                                <label for="editaddressstreet">Street</label>
+                                <input type="text" class="form-control" id="editStreet">
+                            </div>
+                            <div class="col-xs-6">
+                                <label for="editaddresscity">City</label>
+                                <input type="text" class="form-control" id="editCity">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-9">
+                                <label for="editaddressregion">Region</label>
+                                <input type="text" class="form-control" id="editRegion">
+                            </div>
+
+                            <div class="col-xs-3">
+                                <label for="editaddresspostalcode">Postal</label>
+                                <input type="text" class="form-control" id="editPostalcode">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="well well-lg">
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="contactCheck1">
+                            <label class="form-check-label " for="exampleCheck1">Contact</label>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-xs-12">
+                                <label for="editcontactid">ID#</label>
+                                <input type="text" readonly class="form-control" id="editContactId">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-6">
+                                <label for="editcontactcell">Cell Contact</label>
+                                <input type="text" class="form-control" id="editCellContact">
+                            </div>
+                            <div class="col-xs-6">
+                                <label for="editcontactwork">Work Contact</label>
+                                <input type="text" class="form-control" id="editWorkContact">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-9">
+                                <label for="editcontacthome">Home Contact</label>
+                                <input type="text" class="form-control" id="editHomeContact">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="well well-lg">
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="emailCheck1">
+                            <label class="form-check-label " for="exampleCheck1">Email</label>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-12">
+                                <label for="editemailid">ID#</label>
+                                <input type="text" readonly class="form-control" id="editEmailId">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-12">
+                                <label for="editemailaddress">Email Address</label>
+                                <input type="text" class="form-control" id="editEmailAddress">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="row">
+
+                </div>
+                <div class="row">
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <script src="../js/libs/jquery-3.4.1.min.js"></script>
+        <script src="../js/main.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $("#searcheditrecords").on("keyup", function () {
+                    var value = $(this).val().toLowerCase();
+                    $("#contactEdit_data tr").filter(function () {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+            });
+        </script>
+
+    </body>
+</html>

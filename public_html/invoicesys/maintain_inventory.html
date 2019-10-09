@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>maintain Inventory</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="../css/main.css">
+        <style>
+            body {margin:0;}
+
+            .topnav {
+                overflow: hidden;
+                background-color: #f1f1f1;
+            }
+
+            .topnav a {
+                float: left;
+                display: block;
+                color: black;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+                border-bottom: 3px solid transparent;
+            }
+
+            .topnav a:hover {
+                border-bottom: 3px solid #689ebd;
+            }
+
+            .topnav a.active {
+                border-bottom: 3px solid #689ebd;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container center_div">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">Maintain Inventory</h1>
+                    <p class="lead">Search and update or delete existing products, and add new products .</p>
+                </div>
+            </div>
+            <div class="topnav">
+                <a href="../index.html">Home</a>
+                <a href="user_edit.html">Add Customer</a>
+                <a href="edit_contact_details.html">Edit Contact Details</a>
+                <a href="maintain_inventory.html" class="active">Maintain Inventory</a>
+                <a href="history_invoices.html">Sales History</a>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="searchinventoryrecords" placeholder="Search...">
+                    </div>
+                    <div class="col-md-6">
+                        <button id="delete-inventory" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-minus-sign"></span> Delete</button>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <table id="editInven" class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Inventory Id</th>
+                                <th>Product Name</th>
+                                <th>Product Price</th>
+                            </tr>
+                        </thead>
+                        <tbody id="editInven_table_data">
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="col-md-4 well well-lg">
+                    <form name="form3">
+                        <div class="form-group">
+                            <label for="inventoryId">Inventory Id</label>
+                            <input type="text" readonly class="form-control" id="inventoryId" name="blankIn0">
+                        </div>
+                        <div class="form-group">
+                            <label for="productDescription">Product Description</label>
+                            <input type="text" class="form-control" id="inventoryDesc" placeholder="Candy" name="blankIn1">
+                        </div>
+                        <div class="form-group">
+                            <label for="productPrice">Product Price</label>
+                            <input type="text" class="form-control" id="inventoryPric" placeholder="2.00" name="blankIn2">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button id="update-inventory" type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-pencil"></span> Update</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button id="add-invent" type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> Add</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <script src="../js/libs/jquery-3.4.1.min.js"></script>
+        <script src="../js/main.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $("#searchinventoryrecords").on("keyup", function () {
+                    var value = $(this).val().toLowerCase();
+                    $("#editInven_table_data tr").filter(function () {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+            });
+
+            $(document).ready(function () {
+                $('#editInven tbody').on('click', 'tr', function () {
+                    var tableData = $(this).children("td").map(function () {
+                        return $(this).text();
+                    }).get();
+                    var td = tableData[0] + '*' + tableData[1] + '*' + tableData[2];
+
+                    document.getElementById("inventoryId").value = tableData[0];
+                    document.getElementById("inventoryDesc").value = tableData[1];
+                    document.getElementById("inventoryPric").value = tableData[2];
+
+                });
+            });
+        </script>
+    </body>
+</html>
